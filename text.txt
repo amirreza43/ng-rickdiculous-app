@@ -1,0 +1,25 @@
+homepage: list of episodes by names and season/episode
+
+when clicked on each ep, the info for that ep is sent to (id) a list component => route => /episodes/:season,episode
+
+service: getAllEpisodes() func to get all the eps. getById(id for the ep) to use inside the list component.
+getEpisode('pilot',S01E02) to search for eps. favourite(id) adds the ep to an array
+
+an interface for each episode
+
+component => app-root { navbar, epContainer } , epContainer: a list of all eps each when clicked would take us to => route => /episodes:season,episode
+
+
+// make sure that we write our tests first
+// we import RouteModule, HTTPCLIENTMODULE, TEST for HTTPCLIENTMODULE,
+
+
+//Things that we forgot:
+<app-outle> in the html
+importing the httpmodule in the app.module
+create an interface
+
+
+//Thing that we learned
+how to properly create a http get request function by having the func only return an observable of the response
+[routerLink]="['/episode", {{OurVariable}}]" => to add a variable to our routerLink
