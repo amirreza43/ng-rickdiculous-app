@@ -24,7 +24,7 @@ describe('ApiDataService', () => {
     });
     service = TestBed.inject(ApiDataService);
     httpClient = TestBed.inject(HttpClient);
-    httpTestingController = TestBed.inject(HttpTestingController)
+    httpTestingController = TestBed.inject(HttpTestingController);
 
   });
 

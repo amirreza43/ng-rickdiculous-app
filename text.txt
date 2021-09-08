@@ -9,6 +9,7 @@ an interface for each episode
 
 component => app-root { navbar, epContainer } , epContainer: a list of all eps each when clicked would take us to => route => /episodes:season,episode
 
+add favorites and search bar
 
 // make sure that we write our tests first
 // we import RouteModule, HTTPCLIENTMODULE, TEST for HTTPCLIENTMODULE,
