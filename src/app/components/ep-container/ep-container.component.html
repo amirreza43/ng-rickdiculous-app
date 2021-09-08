@@ -1,3 +1,8 @@
-<a [routerLink]="['/episodes', d.id]" *ngFor='let d of data[0]'>{{d.name}}</a>
-<a [routerLink]="['/episodes', d.id]" *ngFor='let d of data[1]'>{{d.name}}</a>
-<a [routerLink]="['/episodes', d.id]" *ngFor='let d of data[2]'>{{d.name}}</a>
+<div class="list-group">
+  <a [routerLink]="['/episodes', d.id]" class="list-group-item list-group-item-action list-group-item-success" *ngFor='let d of data[0]'>
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1" id="episodeName">{{d.name}}</h5>
+    </div>
+    <p class="mb-1">{{d.episode}}</p>
+  </a>
+</div>

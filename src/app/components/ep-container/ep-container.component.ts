@@ -13,7 +13,11 @@ export class EpContainerComponent implements OnInit {
   data: any[] = []
 
   ngOnInit(): void {
+    console.log(this.data);
+    this.getEpisodesByPage()
+  }
 
+  getEpisodesByPage(){
     this.apiDataService.getAllEpisodes(1).subscribe((res)=>{
 
       this.data.push(res.results)
@@ -40,12 +44,7 @@ export class EpContainerComponent implements OnInit {
     }, (err)=>{
       console.log(err);
     })
-
-
-
-
   }
-
 
 
 

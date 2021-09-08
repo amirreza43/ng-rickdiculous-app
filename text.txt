@@ -23,3 +23,5 @@ create an interface
 //Thing that we learned
 how to properly create a http get request function by having the func only return an observable of the response
 [routerLink]="['/episode", {{OurVariable}}]" => to add a variable to our routerLink
+a null injection error means that the testbed is not properly configured. => for components that use routing, we have to import our route module file.
+used ActivatedRoute to get the params and subscribed to listen for changes and make changes to the component accordingly

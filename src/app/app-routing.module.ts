@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { EpDetailComponent } from './components/ep-detail/ep-detail.component';
+import { EpContainerComponent } from './components/ep-container/ep-container.component';
 
 const routes = [
-  { path:'episodes/:epId', component: EpDetailComponent },
+  { path:'episodes/:episodeId', component: EpDetailComponent },
+  { path:'', component: EpContainerComponent},
 ]
 
 @NgModule({
@@ -15,7 +17,7 @@ const routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [
-    RouterModule
+    RouterModule,
   ]
 })
 export class AppRoutingModule { }

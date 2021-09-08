@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EpContainerComponent } from './components/ep-container/ep-container.component';
 import { EpDetailComponent } from './components/ep-detail/ep-detail.component';
+import { ApiDataService } from './services/api-data.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { EpDetailComponent } from './components/ep-detail/ep-detail.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
