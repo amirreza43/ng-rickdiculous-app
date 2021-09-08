@@ -8,13 +8,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { EpContainerComponent } from './components/ep-container/ep-container.component';
 import { EpDetailComponent } from './components/ep-detail/ep-detail.component';
 import { ApiDataService } from './services/api-data.service';
+import { CharacterItemComponent } from './components/character-item/character-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     EpContainerComponent,
-    EpDetailComponent
+    EpDetailComponent,
+    CharacterItemComponent
   ],
   imports: [
     BrowserModule,

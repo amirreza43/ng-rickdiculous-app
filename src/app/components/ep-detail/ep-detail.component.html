@@ -1,5 +1,13 @@
-<p>ep-detail works!</p>
-{{idFromRoute}}
-<p *ngIf="info">{{info.name}}</p>
-<p *ngIf="info">{{info.episode}}</p>
-<p *ngIf="info">{{info.air_date}}</p>
+<div class="container-fluid">
+  <div class="card mx-auto mt-5 w-75 ">
+    <div class="card-body">
+      <h5 class="card-title" *ngIf="info">{{info.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted" *ngIf="info">{{info.episode}}</h6>
+      <p class="card-text" *ngIf="info">{{info.air_date}}</p>
+    </div>
+  </div>
+  <div class="card-columns" *ngIf="characterInfo" style="display: inline-block;">
+    <app-character-item *ngFor="let character of characterInfo" [character]="character" ></app-character-item>
+
+  </div>
+</div>
