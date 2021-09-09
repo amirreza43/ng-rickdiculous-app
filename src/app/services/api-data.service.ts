@@ -9,10 +9,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ApiDataService {
 
   constructor(private http: HttpClient) { }
+  results: EpisodeData[] = [];
+  data : EpisodeData[] = [];
 
-  data;
-
-  getAllEpisodes(pageNumber: number): Observable<any>{
+  getEpisodeByPage(pageNumber: number): Observable<any>{
 
   return this.http.get(`https://rickandmortyapi.com/api/episode?page=${pageNumber}`)
 
@@ -26,5 +26,46 @@ export class ApiDataService {
   getByName(name?: string): Observable<any>{
     return this.http.get(`https://rickandmortyapi.com/api/episode?name=${name}`)
   }
+
+  getAllEpisodes(): Observable<any>{
+    this.getEpisodeByPage(1).subscribe((res)=>{
+
+      // this.data.push(res.results)
+      res.results.map((episode)=> {
+        this.data.push(episode)
+      })
+      console.log(res.results);
+
+    }, (err)=>{
+      console.log(err);
+    })
+    this.getEpisodeByPage(2).subscribe((res)=>{
+
+      // this.data.push(res.results)
+
+      res.results.map((episode)=> {
+        this.data.push(episode)
+      })
+
+
+    }, (err)=>{
+      console.log(err);
+    })
+    this.getEpisodeByPage(3).subscribe((res)=>{
+
+      // this.data.push(res.results)
+
+      console.log(this.results, 'results in the service');
+      res.results.map((episode)=> {
+        this.data.push(episode)
+      })
+
+    }, (err)=>{
+      console.log(err);
+    })
+
+    return of(this.data)
+  }
+
 
 }

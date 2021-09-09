@@ -6,6 +6,7 @@ export interface EpisodeData {
   episode: string,
   characters: string[],
   url: string,
-  created: string
+  created: string,
+  favourited?: boolean
 
 }
