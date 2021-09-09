@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   searchForm: FormGroup;
-
+  searchError: boolean = false;
 
   constructor(private fb: FormBuilder,
     private apiDataService: ApiDataService,
@@ -23,14 +23,23 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.searchForm.controls.searchInput.value);
     this.apiDataService.getByName(this.searchForm.controls.searchInput.value).subscribe(data => {
       console.log('our getbyName response', data);
 
-      if(data.results[0].id){
+      if (data.results[0].id) {
         this.router.navigate(['episodes', data.results[0].id])
       }
+    }, error => {
+      if (error) {
+        this.searchError = true;
+      }
+      setTimeout(() => {
+        this.searchError = false;
+      }, 2000)
+      console.log(error);
+
     })
 
     this.searchForm.reset();
