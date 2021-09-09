@@ -9,6 +9,7 @@ import { EpContainerComponent } from './components/ep-container/ep-container.com
 import { EpDetailComponent } from './components/ep-detail/ep-detail.component';
 import { ApiDataService } from './services/api-data.service';
 import { CharacterItemComponent } from './components/character-item/character-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { CharacterItemComponent } from './components/character-item/character-it
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ApiDataService],
   bootstrap: [AppComponent]

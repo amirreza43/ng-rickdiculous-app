@@ -10,6 +10,10 @@
           <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
         </li>
       </ul>
+      <form (ngSubmit)='onSubmit()' [formGroup]='searchForm' class="d-flex">
+        <input class="form-control me-2" type="search" formControlName='searchInput' placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
 
     </div>
   </div>

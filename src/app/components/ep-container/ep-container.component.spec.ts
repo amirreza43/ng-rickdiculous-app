@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { of } from 'rxjs';
 import { EpisodeData } from 'src/app/models/EpisodeData';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EpContainerComponent', () => {
   let component: EpContainerComponent;
@@ -23,7 +24,8 @@ describe('EpContainerComponent', () => {
 
     await TestBed.configureTestingModule({
       imports:[
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule
       ],
       declarations: [ EpContainerComponent ],
       providers: [{ provide: ApiDataService, useValue: mockService}]

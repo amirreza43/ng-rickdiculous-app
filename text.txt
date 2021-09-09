@@ -28,3 +28,8 @@ a null injection error means that the testbed is not properly configured. => for
 used ActivatedRoute to get the params and subscribed to listen for changes and make changes to the component accordingly
 contacting an API multiple times through getById and getAll is not allowing us to get the data and manipulate it.
 simply bcuz we are calling the api everytime and overwrite our manipulated array with the fresh data.
+
+
+//our logic for search
+in the navbar component => search form => the search button will be bound to a click function => on click we'll get what's inside the search as a name,
+and we use getByName() function in our api-data service. if the name matches an actual response => we'll get the id and reroute the user to /episode/id
