@@ -10,44 +10,63 @@ import { User } from 'src/app/models/User';
 })
 export class EpContainerComponent implements OnInit {
 
-  constructor(private apiDataService: ApiDataService,
-    private userService: UserServiceService) { }
 
   activeUser: User;
   favourited: boolean = false;
+  dataAdded: boolean = false
+  epData: any[] = [];
+  dummyData: any[] = []
+  constructor(private apiDataService: ApiDataService,
+    private userService: UserServiceService) { }
 
-  data: EpisodeData[] = []
+ngOnInit(): void {
+  // this.apiDataService.getAllEpisodes()
+  // this.apiDataService.getEpisodeByPage(1)
 
-  ngOnInit(): void {
-    if(this.data.length === 0){
-      this.apiDataService.getAllEpisodes().subscribe(data => this.data = data)
-      this.userService.getActiveUser().subscribe(res => {
-        this.activeUser = res;
-        console.log(this.activeUser, 'THis is the active user in the homepage');
-        if(res.favourites.length > 0){
-          console.log('inside if');
+  // this.apiDataService.getAll().subscribe(async(data)=>{
+  //   await this.epData.push(data)
 
-          res.favourites.map((favouriteId)=>{
-            console.log('inside res map', this.data);
-            this.data.map((episode)=>{
-              if(favouriteId.id === episode.id){
-                episode.favourited = true;
-                console.log('inside episode map');
+  //  this.userService.getActiveUser().subscribe(async(res) => {
+  //     this.activeUser = await res ;
+  //     if(this.activeUser.favourites.length > 0){
 
-              }
-            })
+  //       this.activeUser.favourites.map((favouriteId)=>{
 
+  //         this.epData[0].map((episode)=>{
 
-          })
+  //           if(favouriteId.id === episode.id){
+  //             episode.favourited = true;
+  //           }
+  //         })
+  //       })
+  //     }
+  //   })
+  // })
+
+  this.containerFunctions()
+
+}
+// create an async func =< have awaits for our subscribes
+//** make sure to do some error handling in the services
+async containerFunctions(){
+  const data = await this.apiDataService.getAll().toPromise()
+  await this.epData.push(data)
+
+  const res = await this.userService.getActiveUser().toPromise()
+  this.activeUser = await res;
+  if(this.activeUser.favourites.length > 0){
+    console.log('when map kinda happens');
+
+    this.activeUser.favourites.map((favouriteId)=>{
+
+      this.epData[0].map((episode)=>{
+
+        if(favouriteId.id === episode.id){
+          episode.favourited = true;
         }
-
       })
-    }
-    console.log(this.data);
-
-
+    })
   }
-
-
+}
 
 }

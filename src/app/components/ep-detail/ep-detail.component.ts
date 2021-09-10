@@ -17,6 +17,7 @@ export class EpDetailComponent implements OnInit {
   characterInfo: any[]=[];
   activeUser: User;
   favourited: boolean = false;
+  isLiked: boolean = false
 
   constructor(private route: ActivatedRoute,
     private apiDataService: ApiDataService,
@@ -24,7 +25,6 @@ export class EpDetailComponent implements OnInit {
     private userService: UserServiceService) { }
 
   ngOnInit(): void {
-    console.log(this.activeUser);
 
     this.route.params.subscribe(params => {
       this.idFromRoute = params['episodeId'];
@@ -39,18 +39,13 @@ export class EpDetailComponent implements OnInit {
   resetComponentState = () =>{
     console.log(this.idFromRoute);
     if(!this.idFromRoute) this.idFromRoute=1;
-    console.log('check for idFromRoute', this.apiDataService);
 
 
     this.apiDataService.getById(this.idFromRoute).subscribe(data => {
       this.info = data;
 
       this.setCharacterInfo();
-      console.log('character info',this.characterInfo);
-      for(let character of this.characterInfo){
-        console.log(character);
 
-      }
       this.userService.getActiveUser().subscribe(data => {
 
         if(data.favourites.length > 0 && this.info){
@@ -79,24 +74,24 @@ export class EpDetailComponent implements OnInit {
   favourite(){
     this.userService.getActiveUser().subscribe(data => {
       this.activeUser = data;
+    });
       // to check if the episode is already liked
-      if(this.activeUser.favourites.length > 0){
-        this.activeUser.favourites.map((favouriteId)=>{
-          if(favouriteId.id === this.info.id){
-            this.favourited = true
-          } else {
-            this.activeUser.favourites.push({id: this.info.id});
-            this.favourited = true
-          }
-        })
-      } else {
+      for(let favourite in this.activeUser.favourites){
+        if(this.activeUser.favourites[favourite].id === this.info.id){
+          this.favourited = false;
+          this.activeUser.favourites.splice(parseInt(favourite), 1);
+          console.log('unlike runs', favourite);
+
+          return
+        }
+      }
+
         //if not liked we add it to the user's favourites array
-        console.log('push favs runs');
+      console.log('this should not run on unlike');
 
       this.favourited = true
       this.activeUser.favourites.push({id: this.info.id});
-      }
-    });
+
     console.log(this.activeUser);
 
   }

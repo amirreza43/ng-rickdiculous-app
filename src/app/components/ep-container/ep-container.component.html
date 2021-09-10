@@ -1,5 +1,5 @@
 <div class="list-group">
-  <a [routerLink]="['/episodes', d.id]" class="list-group-item list-group-item-action list-group-item-success" *ngFor='let d of data'>
+  <a [routerLink]="['/episodes', d.id]" class="list-group-item list-group-item-action list-group-item-success" *ngFor='let d of epData[0]'>
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1" id="episodeName">{{d.name}} </h5><p class="card-text btn btn-success float-end" *ngIf="d.favourited">💚</p>
     </div>

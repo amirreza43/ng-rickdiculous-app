@@ -12,9 +12,15 @@ export class ApiDataService {
   results: EpisodeData[] = [];
   data : EpisodeData[] = [];
 
-  getEpisodeByPage(pageNumber: number): Observable<any>{
+  async getEpisodeByPage(pageNumber: number): Promise<Observable<any>>{
+    try {
+      const res = await this.http.get(`https://rickandmortyapi.com/api/episode?page=${pageNumber}`).toPromise()
 
-  return this.http.get(`https://rickandmortyapi.com/api/episode?page=${pageNumber}`)
+
+      return of(res)
+    } catch (error) {
+
+    }
 
   }
 
@@ -27,44 +33,21 @@ export class ApiDataService {
     return this.http.get(`https://rickandmortyapi.com/api/episode?name=${name}`)
   }
 
-  getAllEpisodes(): Observable<any>{
-    this.getEpisodeByPage(1).subscribe((res)=>{
+  async getAllEpisodes(): Promise<Observable<any>>{
 
-      // this.data.push(res.results)
-      res.results.map((episode)=> {
-        this.data.push(episode)
-      })
-      console.log(res.results);
+    if(this.data.length === 0){
 
-    }, (err)=>{
-      console.log(err);
-    })
-    this.getEpisodeByPage(2).subscribe((res)=>{
-
-      // this.data.push(res.results)
-
-      res.results.map((episode)=> {
-        this.data.push(episode)
-      })
+      const res = (await this.getEpisodeByPage(1)).toPromise()
+      console.log(res);
 
 
-    }, (err)=>{
-      console.log(err);
-    })
-    this.getEpisodeByPage(3).subscribe((res)=>{
-
-      // this.data.push(res.results)
-
-      console.log(this.results, 'results in the service');
-      res.results.map((episode)=> {
-        this.data.push(episode)
-      })
-
-    }, (err)=>{
-      console.log(err);
-    })
+    }
 
     return of(this.data)
+  }
+
+  getAll(): Observable<any>{
+    return this.http.get('https://rickandmortyapi.com/api/episode/[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41]')
   }
 
 
